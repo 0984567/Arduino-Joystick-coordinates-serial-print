@@ -4,7 +4,7 @@
 void setup() 
 {
   Serial.begin(9600);  // Setup serial communication at 9600 bits per second
-  Serial.println("Joystick Module co-ordinatates"); // Print "Joystick Module coordinates" on serial monitor
+  Serial.println("Joystick Module coordinates"); // Print "Joystick Module coordinates" on serial monitor
   delay(1000);
 }
 
