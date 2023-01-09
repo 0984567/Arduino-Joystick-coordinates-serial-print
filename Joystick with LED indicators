@@ -1,0 +1,54 @@
+//Franklin Jolley
+// Unit 75 
+
+void setup() 
+{
+  Serial.begin(9600);  // Setup serial communication at 9600 bits per second
+  Serial.println("Joystick Module coordinates"); // Print "Joystick Module co-ordinatates" on serial monitor
+  delay(1000);
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+}
+
+void loop() 
+{
+  int x = analogRead(A0);  // Read values of VRx
+  int y = analogRead(A1);  // Read values of VRy
+
+  x = map(x, 0, 1023, -100, 100); // Scale the x values to a range of -100 to 100
+  y = map(y, 0, 1023, -100, 100); // Scale the y values to a range of -100 to 100
+
+  Serial.print("X: ");
+  Serial.print(x);
+  Serial.print("  -  Y: ");
+  Serial.println(y);
+
+  // if joystick is pushed all the way up, output 13 (GREEN LED) flashes
+  if(x > 99) {
+    digitalWrite(13, HIGH);
+    delay(100);
+    digitalWrite(13, LOW);
+  }
+  // if joystick is pushed all the way down, output 12 (BLUE LED) flashes
+  else if(x < -99) {
+    digitalWrite(12, HIGH);
+    delay(100);
+    digitalWrite(12, LOW);
+  }
+  // if joystick is pushed far right, output 11 (white LED) flashes
+  else if(y > 99) {
+    digitalWrite(11, HIGH);
+    delay(100);
+    digitalWrite(11, LOW);
+  }
+  // if joystick is pushed far left, output 10 (RED LED) flashes
+  else if(y < -99) {
+    digitalWrite(10, HIGH);
+    delay(100);
+    digitalWrite(10, LOW);
+  }
+
+  delay(200); // delay 0.2 seconds before printing updated values
+}
